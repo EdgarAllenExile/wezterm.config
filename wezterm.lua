@@ -4,6 +4,9 @@ local wezterm_mux = wezterm.mux
 
 local config = wezterm.config_builder()
 
+-- Imports
+local keybinds = require("config/keybinds")
+keybinds.apply_to_config(config)
 -- UI
 config.color_scheme = "Sonokai (Gogh)"
 config.font = wezterm.font("RobotoMono Nerd Font")
