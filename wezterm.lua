@@ -20,7 +20,7 @@ config.default_workspace = "main"
 -- Keybind
 config.disable_default_key_bindings = true
 
-config.leader = { key = "`", mods = "CMD", timeout_miliseconds = 1000 }
+config.leader = { key = "`", mods = "ALT", timeout_miliseconds = 1000 }
 
 config.keys = {
 	{ key = "Tab", mods = "CTRL", action = act.ActivateTabRelative(1) },
