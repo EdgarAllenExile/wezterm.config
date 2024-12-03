@@ -5,7 +5,7 @@ local mux = wezterm.mux
 local config = wezterm.config_builder()
 
 -- UI
-config.color_scheme = "Sonokai (Gogh)"
+config.color_scheme = "Andromeda"
 
 config.font = wezterm.font("RobotoMono Nerd Font")
 config.font_size = 13
