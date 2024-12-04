@@ -5,13 +5,13 @@ local mux = wezterm.mux
 local config = wezterm.config_builder()
 
 -- UI
-config.color_scheme = "Andromeda"
+config.color_scheme = "Argonaut (Gogh)"
 
-config.font = wezterm.font("RobotoMono Nerd Font")
+config.font = wezterm.font("Fragment Mono")
 config.font_size = 13
 
 -- UI.TabBar
-config.use_fancy_tab_bar = false
+config.use_fancy_tab_bar = true
 config.window_decorations = "INTEGRATED_BUTTONS|RESIZE"
 config.hide_tab_bar_if_only_one_tab = false
 
@@ -20,7 +20,7 @@ config.default_workspace = "main"
 -- Keybind
 config.disable_default_key_bindings = true
 
-config.leader = { key = "`", mods = "ALT", timeout_miliseconds = 1000 }
+config.leader = { key = "`", mods = "ALT", timeout_miliseconds = 3000 }
 
 config.keys = {
 	{ key = "Tab", mods = "CTRL", action = act.ActivateTabRelative(1) },
