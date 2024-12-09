@@ -17,6 +17,17 @@ config.hide_tab_bar_if_only_one_tab = false
 
 config.default_workspace = "main"
 
+-- plugins
+local bar = wezterm.plugin.require("https://github.com/adriankarlen/bar.wezterm")
+bar.apply_to_config(config)
+
+bar.apply_to_config(config, {
+	position = "top",
+	padding = {
+		top = 110,
+	},
+})
+
 -- Keybind
 config.disable_default_key_bindings = true
 
