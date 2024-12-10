@@ -57,6 +57,30 @@ tabline.setup({
 
 tabline.apply_to_config(config)
 
+local smart_splits = wezterm.plugin.require("https://github.com/mrjones2014/smart-splits.nvim")
+
+smart_splits.apply_to_config(config, {
+	-- the default config is here, if you'd like to use the default keys,
+	-- you can omit this configuration table parameter and just use
+	-- smart_splits.apply_to_config(config)
+
+	-- directional keys to use in order of: left, down, up, right
+	direction_keys = { "h", "j", "k", "l" },
+	-- if you want to use separate direction keys for move vs. resize, you
+	-- can also do this:
+	-- direction_keys = {
+	--   move = { 'h', 'j', 'k', 'l' },
+	--   resize = { 'LeftArrow', 'DownArrow', 'UpArrow', 'RightArrow' },
+	-- },
+	-- modifier keys to combine with direction_keys
+	modifiers = {
+		move = "CTRL", -- modifier to use for pane movement, e.g. CTRL+h to move left
+		resize = "ALT", -- modifier to use for pane resize, e.g. META+h to resize to the left
+	},
+	-- log level to use: info, warn, error
+	log_level = "info",
+})
+
 -- local bar = wezterm.plugin.require("https://github.com/adriankarlen/bar.wezterm")
 -- bar.apply_to_config(config, {
 -- 	position = "bottom",
@@ -135,11 +159,11 @@ config.keys = {
 	{ key = "f", mods = "CTRL", action = act.Search("CurrentSelectionOrEmptyString") },
 	{ key = "f", mods = "LEADER", action = act.Search("CurrentSelectionOrEmptyString") },
 	-- { key = "H", mods = "CTRL", action = act.HideApplication },
-	{ key = "h", mods = "SHIFT|CTRL", action = act.HideApplication },
-	{ key = "k", mods = "CTRL", action = act.ClearScrollback("ScrollbackOnly") },
+	{ key = "h", mods = "SUPER", action = act.HideApplication },
+	{ key = "k", mods = "SUPER", action = act.ClearScrollback("ScrollbackOnly") },
 	-- { key = "K", mods = "SHIFT|CTRL", action = act.ClearScrollback("ScrollbackOnly") },
 	{ key = "m", mods = "CTRL", action = act.Hide },
-	{ key = "m", mods = "SHIFT|CTRL", action = act.Hide },
+	{ key = "m", mods = "SUPER", action = act.Hide },
 	{ key = "n", mods = "CTRL", action = act.SpawnWindow },
 	{ key = "n", mods = "SUPER", action = act.SpawnWindow },
 	{ key = "p", mods = "CTRL", action = act.ActivateCommandPalette },
@@ -176,10 +200,10 @@ config.keys = {
 	{ key = "PageDown", mods = "SHIFT", action = act.ScrollByPage(1) },
 	{ key = "PageDown", mods = "CTRL", action = act.ActivateTabRelative(1) },
 	{ key = "PageDown", mods = "SHIFT|CTRL", action = act.MoveTabRelative(1) },
-	{ key = "h", mods = "SHIFT|ALT", action = act.ActivatePaneDirection("Left") },
-	{ key = "l", mods = "SHIFT|ALT", action = act.ActivatePaneDirection("Right") },
-	{ key = "k", mods = "SHIFT|ALT", action = act.ActivatePaneDirection("Up") },
-	{ key = "j", mods = "SHIFT|ALT", action = act.ActivatePaneDirection("Down") },
+	-- { key = "h", mods = "SHIFT|ALT", action = act.ActivatePaneDirection("Left") },
+	-- { key = "l", mods = "SHIFT|ALT", action = act.ActivatePaneDirection("Right") },
+	-- { key = "k", mods = "SHIFT|ALT", action = act.ActivatePaneDirection("Up") },
+	-- { key = "j", mods = "SHIFT|ALT", action = act.ActivatePaneDirection("Down") },
 	{ key = "Copy", mods = "NONE", action = act.CopyTo("Clipboard") },
 	{ key = "Paste", mods = "NONE", action = act.PasteFrom("Clipboard") },
 	-- { key = "Z", mods = "SHIFT|CTRL", action = act.TogglePaneZoomState },
@@ -222,10 +246,10 @@ config.keys = {
 	-- { key = "{", mods = "SHIFT|SUPER", action = act.ActivateTabRelative(-1) },
 	-- { key = "}", mods = "SUPER", action = act.ActivateTabRelative(1) },
 	-- { key = "}", mods = "SHIFT|SUPER", action = act.ActivateTabRelative(1) },
-	{ key = "h", mods = "SHIFT|ALT|CTRL", action = act.AdjustPaneSize({ "Left", 1 }) },
-	{ key = "l", mods = "SHIFT|ALT|CTRL", action = act.AdjustPaneSize({ "Right", 1 }) },
-	{ key = "k", mods = "SHIFT|ALT|CTRL", action = act.AdjustPaneSize({ "Up", 1 }) },
-	{ key = "j", mods = "SHIFT|ALT|CTRL", action = act.AdjustPaneSize({ "Down", 1 }) },
+	-- { key = "h", mods = "SHIFT|ALT|CTRL", action = act.AdjustPaneSize({ "Left", 1 }) },
+	-- { key = "l", mods = "SHIFT|ALT|CTRL", action = act.AdjustPaneSize({ "Right", 1 }) },
+	-- { key = "k", mods = "SHIFT|ALT|CTRL", action = act.AdjustPaneSize({ "Up", 1 }) },
+	-- { key = "j", mods = "SHIFT|ALT|CTRL", action = act.AdjustPaneSize({ "Down", 1 }) },
 }
 
 config.key_tables = {
@@ -269,10 +293,10 @@ config.key_tables = {
 		{ key = "f", mods = "CTRL", action = act.CopyMode("PageDown") },
 		{ key = "g", mods = "NONE", action = act.CopyMode("MoveToScrollbackTop") },
 		{ key = "g", mods = "CTRL", action = act.CopyMode("Close") },
-		{ key = "h", mods = "NONE", action = act.CopyMode("MoveLeft") },
-		{ key = "j", mods = "NONE", action = act.CopyMode("MoveDown") },
-		{ key = "k", mods = "NONE", action = act.CopyMode("MoveUp") },
-		{ key = "l", mods = "NONE", action = act.CopyMode("MoveRight") },
+		-- { key = "h", mods = "NONE", action = act.CopyMode("MoveLeft") },
+		-- { key = "j", mods = "NONE", action = act.CopyMode("MoveDown") },
+		-- { key = "k", mods = "NONE", action = act.CopyMode("MoveUp") },
+		-- { key = "l", mods = "NONE", action = act.CopyMode("MoveRight") },
 		{ key = "m", mods = "ALT", action = act.CopyMode("MoveToStartOfLineContent") },
 		{ key = "o", mods = "NONE", action = act.CopyMode("MoveToSelectionOtherEnd") },
 		{ key = "q", mods = "NONE", action = act.CopyMode("Close") },
