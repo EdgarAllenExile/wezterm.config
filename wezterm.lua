@@ -14,19 +14,56 @@ config.font_size = 13
 config.use_fancy_tab_bar = true
 config.window_decorations = "INTEGRATED_BUTTONS|RESIZE"
 config.hide_tab_bar_if_only_one_tab = false
-
+config.tab_bar_at_bottom = true
 config.default_workspace = "main"
 
--- plugins
-local bar = wezterm.plugin.require("https://github.com/adriankarlen/bar.wezterm")
-bar.apply_to_config(config)
-
-bar.apply_to_config(config, {
-	position = "top",
-	padding = {
-		top = 110,
+local tabline = wezterm.plugin.require("https://github.com/michaelbrusegard/tabline.wez")
+tabline.setup({
+	options = {
+		icons_enabled = true,
+		theme = "Catppuccin Mocha",
+		color_overrides = {},
+		section_separators = {
+			left = wezterm.nerdfonts.pl_left_hard_divider,
+			right = wezterm.nerdfonts.pl_right_hard_divider,
+		},
+		component_separators = {
+			left = wezterm.nerdfonts.pl_left_soft_divider,
+			right = wezterm.nerdfonts.pl_right_soft_divider,
+		},
+		tab_separators = {
+			left = wezterm.nerdfonts.pl_left_hard_divider,
+			right = wezterm.nerdfonts.pl_right_hard_divider,
+		},
 	},
+	sections = {
+		tabline_a = { "mode" },
+		tabline_b = { "workspace" },
+		tabline_c = { " " },
+		tab_active = {
+			"index",
+			{ "parent", padding = 0 },
+			"/",
+			{ "cwd", padding = { left = 0, right = 1 } },
+			{ "zoomed", padding = 0 },
+		},
+		tab_inactive = { "index", { "process", padding = { left = 0, right = 1 } } },
+		tabline_x = { "ram", "cpu" },
+		tabline_y = { "datetime", "battery" },
+		tabline_z = { "hostname" },
+	},
+	extensions = {},
 })
+
+tabline.apply_to_config(config)
+
+-- local bar = wezterm.plugin.require("https://github.com/adriankarlen/bar.wezterm")
+-- bar.apply_to_config(config, {
+-- 	position = "bottom",
+-- 	-- padding = {
+-- 	-- 	top = 10,
+-- 	-- },
+-- })
 
 -- Keybind
 config.disable_default_key_bindings = true
@@ -34,56 +71,59 @@ config.disable_default_key_bindings = true
 config.leader = { key = "`", mods = "ALT", timeout_miliseconds = 3000 }
 
 config.keys = {
-	{ key = "Tab", mods = "CTRL", action = act.ActivateTabRelative(1) },
-	{ key = "Tab", mods = "SHIFT|CTRL", action = act.ActivateTabRelative(-1) },
 	{ key = "Enter", mods = "ALT", action = act.ToggleFullScreen },
 	{ key = "!", mods = "CTRL", action = act.ActivateTab(0) },
-	-- { key = "!", mods = "SHIFT|CTRL", action = act.ActivateTab(0) },
 	{ key = "s", mods = "LEADER|ALT", action = act.SplitVertical({ domain = "CurrentPaneDomain" }) },
-	-- { key = 's', mods = "SHIFT|ALT|CTRL", action = act.SplitVertical({ domain = "CurrentPaneDomain" }) },
-	{ key = "#", mods = "LEADER|ALT", action = act.ActivateTab(2) },
-	{ key = "#", mods = "SHIFT|CTRL", action = act.ActivateTab(2) },
-	{ key = "$", mods = "CTRL", action = act.ActivateTab(3) },
-	{ key = "$", mods = "SHIFT|CTRL", action = act.ActivateTab(3) },
-	{ key = "%", mods = "CTRL", action = act.ActivateTab(4) },
-	{ key = "%", mods = "SHIFT|CTRL", action = act.ActivateTab(4) },
 	{ key = "s", mods = "LEADER|SHIFT|ALT", action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
+
+	-- Tab Navigation
+	{ key = "Tab", mods = "LEADER|ALT", action = act.ActivateTabRelative(1) },
+	{ key = "Tab", mods = "LEADER|SHIFT|ALT", action = act.ActivateTabRelative(-1) },
+	{ key = "1", mods = "LEADER|ALT", action = act.ActivateTab(0) },
+	{ key = "2", mods = "LEADER|ALT", action = act.ActivateTab(1) },
+	{ key = "3", mods = "LEADER|ALT", action = act.ActivateTab(2) },
+	{ key = "4", mods = "LEADER|ALT", action = act.ActivateTab(3) },
+	{ key = "5", mods = "LEADER|ALT", action = act.ActivateTab(4) },
+	{ key = "6", mods = "LEADER|ALT", action = act.ActivateTab(5) },
+	{ key = "7", mods = "LEADER|ALT", action = act.ActivateTab(6) },
+	{ key = "8", mods = "LEADER|ALT", action = act.ActivateTab(7) },
+	{ key = "9", mods = "LEADER|ALT", action = act.ActivateTab(-1) },
+	--
+	-- { key = 's', mods = "SHIFT|ALT|CTRL", action = act.SplitVertical({ domain = "CurrentPaneDomain" }) },
+	-- { key = "!", mods = "SHIFT|CTRL", action = act.ActivateTab(0) },
+	{ key = "#", mods = "LEADER|ALT", action = act.ActivateTab(2) },
+	-- { key = "#", mods = "SHIFT|CTRL", action = act.ActivateTab(2) },
+	-- { key = "$", mods = "CTRL", action = act.ActivateTab(3) },
+	{ key = "$", mods = "LEADER|ALT", action = act.ActivateTab(3) },
+	-- { key = "%", mods = "CTRL", action = act.ActivateTab(4) },
+	{ key = "%", mods = "LEADER|ALT", action = act.ActivateTab(4) },
 	-- { key = "s", mods = "SHIFT|ALT|CTRL", action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
-	{ key = "&", mods = "CTRL", action = act.ActivateTab(6) },
-	{ key = "&", mods = "SHIFT|CTRL", action = act.ActivateTab(6) },
+	-- { key = "&", mods = "CTRL", action = act.ActivateTab(6) },
+	{ key = "&", mods = "LEADER|ALT", action = act.ActivateTab(6) },
 	-- { key = "'", mods = "SHIFT|ALT|CTRL", action = act.SplitVertical({ domain = "CurrentPaneDomain" }) },
 	{ key = "(", mods = "CTRL", action = act.ActivateTab(-1) },
 	{ key = "(", mods = "SHIFT|CTRL", action = act.ActivateTab(-1) },
-	{ key = ")", mods = "CTRL", action = act.ResetFontSize },
-	{ key = ")", mods = "SHIFT|CTRL", action = act.ResetFontSize },
-	{ key = "*", mods = "CTRL", action = act.ActivateTab(7) },
-	{ key = "*", mods = "SHIFT|CTRL", action = act.ActivateTab(7) },
-	{ key = "+", mods = "CTRL", action = act.IncreaseFontSize },
-	{ key = "+", mods = "SHIFT|CTRL", action = act.IncreaseFontSize },
-	{ key = "-", mods = "CTRL", action = act.DecreaseFontSize },
-	{ key = "-", mods = "SHIFT|CTRL", action = act.DecreaseFontSize },
-	{ key = "-", mods = "SUPER", action = act.DecreaseFontSize },
-	{ key = "0", mods = "CTRL", action = act.ResetFontSize },
-	{ key = "0", mods = "SHIFT|CTRL", action = act.ResetFontSize },
-	{ key = "0", mods = "SUPER", action = act.ResetFontSize },
-	{ key = "1", mods = "SHIFT|CTRL", action = act.ActivateTab(0) },
+	-- { key = ")", mods = "CTRL", action = act.ResetFontSize },
+	-- { key = ")", mods = "SHIFT|CTRL", action = act.ResetFontSize },
+	-- { key = "*", mods = "CTRL", action = act.ActivateTab(7) },
+	-- { key = "*", mods = "SHIFT|CTRL", action = act.ActivateTab(7) },
+	-- { key = "+", mods = "CTRL", action = act.IncreaseFontSize },
+	-- { key = "+", mods = "SHIFT|CTRL", action = act.IncreaseFontSize },
+	-- { key = "-", mods = "CTRL", action = act.DecreaseFontSize },
+	-- { key = "-", mods = "SHIFT|CTRL", action = act.DecreaseFontSize },
+	-- { key = "-", mods = "SUPER", action = act.DecreaseFontSize },
+	-- { key = "0", mods = "CTRL", action = act.ResetFontSize },
+	-- { key = "0", mods = "SHIFT|CTRL", action = act.ResetFontSize },
+	-- { key = "0", mods = "SUPER", action = act.ResetFontSize },
 	{ key = "1", mods = "SUPER", action = act.ActivateTab(0) },
-	{ key = "2", mods = "SHIFT|CTRL", action = act.ActivateTab(1) },
 	{ key = "2", mods = "SUPER", action = act.ActivateTab(1) },
-	{ key = "3", mods = "SHIFT|CTRL", action = act.ActivateTab(2) },
 	{ key = "3", mods = "SUPER", action = act.ActivateTab(2) },
-	{ key = "4", mods = "SHIFT|CTRL", action = act.ActivateTab(3) },
 	{ key = "4", mods = "SUPER", action = act.ActivateTab(3) },
-	{ key = "5", mods = "SHIFT|CTRL", action = act.ActivateTab(4) },
 	-- { key = "5", mods = "SHIFT|ALT|CTRL", action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
 	{ key = "5", mods = "SUPER", action = act.ActivateTab(4) },
-	{ key = "6", mods = "SHIFT|CTRL", action = act.ActivateTab(5) },
 	{ key = "6", mods = "SUPER", action = act.ActivateTab(5) },
-	{ key = "7", mods = "SHIFT|CTRL", action = act.ActivateTab(6) },
 	{ key = "7", mods = "SUPER", action = act.ActivateTab(6) },
-	{ key = "8", mods = "SHIFT|CTRL", action = act.ActivateTab(7) },
 	{ key = "8", mods = "SUPER", action = act.ActivateTab(7) },
-	{ key = "9", mods = "SHIFT|CTRL", action = act.ActivateTab(-1) },
 	{ key = "9", mods = "SUPER", action = act.ActivateTab(-1) },
 	{ key = "=", mods = "CTRL", action = act.IncreaseFontSize },
 	{ key = "=", mods = "SHIFT|CTRL", action = act.IncreaseFontSize },
