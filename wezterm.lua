@@ -1,6 +1,6 @@
 local wezterm = require("wezterm")
 local act = wezterm.action
-local mux = wezterm.mux
+-- local mux = wezterm.mux
 
 local config = wezterm.config_builder()
 
@@ -17,6 +17,7 @@ config.hide_tab_bar_if_only_one_tab = false
 config.tab_bar_at_bottom = true
 config.default_workspace = "main"
 
+local smart_splits = wezterm.plugin.require("https://github.com/mrjones2014/smart-splits.nvim")
 local tabline = wezterm.plugin.require("https://github.com/michaelbrusegard/tabline.wez")
 tabline.setup({
 	options = {
@@ -57,30 +58,6 @@ tabline.setup({
 
 tabline.apply_to_config(config)
 
-local smart_splits = wezterm.plugin.require("https://github.com/mrjones2014/smart-splits.nvim")
-
-smart_splits.apply_to_config(config, {
-	-- the default config is here, if you'd like to use the default keys,
-	-- you can omit this configuration table parameter and just use
-	-- smart_splits.apply_to_config(config)
-
-	-- directional keys to use in order of: left, down, up, right
-	direction_keys = { "h", "j", "k", "l" },
-	-- if you want to use separate direction keys for move vs. resize, you
-	-- can also do this:
-	-- direction_keys = {
-	--   move = { 'h', 'j', 'k', 'l' },
-	--   resize = { 'LeftArrow', 'DownArrow', 'UpArrow', 'RightArrow' },
-	-- },
-	-- modifier keys to combine with direction_keys
-	modifiers = {
-		move = "CTRL", -- modifier to use for pane movement, e.g. CTRL+h to move left
-		resize = "ALT", -- modifier to use for pane resize, e.g. META+h to resize to the left
-	},
-	-- log level to use: info, warn, error
-	log_level = "info",
-})
-
 -- local bar = wezterm.plugin.require("https://github.com/adriankarlen/bar.wezterm")
 -- bar.apply_to_config(config, {
 -- 	position = "bottom",
@@ -90,7 +67,7 @@ smart_splits.apply_to_config(config, {
 -- })
 
 -- Keybind
-config.disable_default_key_bindings = true
+config.disable_default_key_bindings = false
 
 config.leader = { key = "`", mods = "ALT", timeout_miliseconds = 3000 }
 
@@ -113,8 +90,18 @@ config.keys = {
 	{ key = "8", mods = "LEADER|ALT", action = act.ActivateTab(7) },
 	{ key = "9", mods = "LEADER|ALT", action = act.ActivateTab(-1) },
 	--
-	-- { key = 's', mods = "SHIFT|ALT|CTRL", action = act.SplitVertical({ domain = "CurrentPaneDomain" }) },
+	-- { key = "h", mods = "LEADER|ALT", action = act.ActivatePaneDirection("Left") },
+	-- { key = "l", mods = "LEADER|ALT", action = act.ActivatePaneDirection("Right") },
+	-- { key = "k", mods = "LEADER|ALT", action = act.ActivatePaneDirection("Up") },
+	-- { key = "j", mods = "LEADER|ALT", action = act.ActivatePaneDirection("Down") },
+	-- --
+	-- { key = "h", mods = "LEADER|ALT", action = act.AdjustPaneSize({ "Left", 1 }) },
+	-- { key = "l", mods = "LEADER|ALT", action = act.AdjustPaneSize({ "Right", 1 }) },
+	-- { key = "k", mods = "LEADER|ALT", action = act.AdjustPaneSize({ "Up", 1 }) },
+	-- { key = "j", mods = "LEADER|ALT", action = act.AdjustPaneSize({ "Down", 1 }) },
+
 	-- { key = "!", mods = "SHIFT|CTRL", action = act.ActivateTab(0) },
+	-- { key = 's', mods = "SHIFT|ALT|CTRL", action = act.SplitVertical({ domain = "CurrentPaneDomain" }) },
 	-- { key = "#", mods = "LEADER|ALT", action = act.ActivateTab(2) },
 	-- { key = "#", mods = "SHIFT|CTRL", action = act.ActivateTab(2) },
 	-- { key = "$", mods = "CTRL", action = act.ActivateTab(3) },
@@ -200,10 +187,6 @@ config.keys = {
 	{ key = "PageDown", mods = "SHIFT", action = act.ScrollByPage(1) },
 	{ key = "PageDown", mods = "CTRL", action = act.ActivateTabRelative(1) },
 	{ key = "PageDown", mods = "SHIFT|CTRL", action = act.MoveTabRelative(1) },
-	-- { key = "h", mods = "SHIFT|ALT", action = act.ActivatePaneDirection("Left") },
-	-- { key = "l", mods = "SHIFT|ALT", action = act.ActivatePaneDirection("Right") },
-	-- { key = "k", mods = "SHIFT|ALT", action = act.ActivatePaneDirection("Up") },
-	-- { key = "j", mods = "SHIFT|ALT", action = act.ActivatePaneDirection("Down") },
 	{ key = "Copy", mods = "NONE", action = act.CopyTo("Clipboard") },
 	{ key = "Paste", mods = "NONE", action = act.PasteFrom("Clipboard") },
 	-- { key = "Z", mods = "SHIFT|CTRL", action = act.TogglePaneZoomState },
@@ -335,4 +318,28 @@ config.key_tables = {
 		{ key = "DownArrow", mods = "NONE", action = act.CopyMode("NextMatch") },
 	},
 }
+
+-- smart_splits.apply_to_config(config)
+smart_splits.apply_to_config(config, {
+	-- the default config is here, if you'd like to use the default keys,
+	-- you can omit this configuration table parameter and just use
+	-- smart_splits.apply_to_config(config)
+
+	-- directional keys to use in order of: left, down, up, right
+	direction_keys = { "h", "j", "k", "l" },
+	-- if you want to use separate direction keys for move vs. resize, you
+	-- can also do this:
+	-- direction_keys = {
+	--   move = { 'h', 'j', 'k', 'l' },
+	--   resize = { 'LeftArrow', 'DownArrow', 'UpArrow', 'RightArrow' },
+	-- },
+	-- modifier keys to combine with direction_keys
+	modifiers = {
+		move = "CTRL", -- modifier to use for pane movement, e.g. CTRL+h to move left
+		resize = "META", -- modifier to use for pane resize, e.g. META+h to resize to the left
+	},
+	-- log level to use: info, warn, error
+	log_level = "info",
+})
+
 return config
