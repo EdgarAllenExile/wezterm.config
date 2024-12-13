@@ -22,7 +22,8 @@ local tabline = wezterm.plugin.require("https://github.com/michaelbrusegard/tabl
 tabline.setup({
 	options = {
 		icons_enabled = true,
-		theme = "Monokai Soda",
+		-- icons_only = true,
+		theme = "Monokai Remastered",
 		color_overrides = {},
 		section_separators = {
 			left = wezterm.nerdfonts.pl_left_hard_divider,
@@ -46,14 +47,14 @@ tabline.setup({
 			{ "parent", padding = 0 },
 			"/",
 			{ "cwd", padding = { left = 0, right = 1 } },
-			"process",
-			process_to_icon = {
-				["git"] = wezterm.nerdfonts.dev_git,
-			},
+			{ "process", icons_only = true },
+			-- process_to_icon = {
+			-- 	["git"] = wezterm.nerdfonts.dev_git,
+			-- },
 			{ "zoomed", padding = 0 },
 		},
 		tab_inactive = { "index", { "process", padding = { left = 0, right = 1 } } },
-		tabline_x = { "ram", "cpu" },
+		tabline_x = {},
 		tabline_y = { "datetime", "battery" },
 		tabline_z = { "hostname" },
 	},
