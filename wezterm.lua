@@ -46,6 +46,10 @@ tabline.setup({
 			{ "parent", padding = 0 },
 			"/",
 			{ "cwd", padding = { left = 0, right = 1 } },
+			"process",
+			process_to_icon = {
+				["git"] = wezterm.nerdfonts.dev_git,
+			},
 			{ "zoomed", padding = 0 },
 		},
 		tab_inactive = { "index", { "process", padding = { left = 0, right = 1 } } },
