@@ -22,7 +22,6 @@ local tabline = wezterm.plugin.require("https://github.com/michaelbrusegard/tabl
 tabline.setup({
 	options = {
 		icons_enabled = true,
-		-- icons_only = true,
 		theme = "Monokai Remastered",
 		color_overrides = {},
 		section_separators = {
@@ -72,7 +71,7 @@ tabline.apply_to_config(config)
 -- })
 
 -- Keybind
-config.disable_default_key_bindings = false
+config.disable_default_key_bindings = true
 
 config.leader = { key = "`", mods = "ALT", timeout_miliseconds = 3000 }
 
@@ -111,11 +110,10 @@ config.keys = {
 	{ key = "p", mods = "SUPER", action = act.ActivateCommandPalette },
 	{ key = "Q", mods = "CTRL", action = act.QuitApplication },
 	{ key = "q", mods = "SUPER", action = act.QuitApplication },
-	{ key = "r", mods = "LEADER|CTRL", action = act.ReloadConfiguration },
+	{ key = "r", mods = "SUPER", action = act.ReloadConfiguration },
 	-- { key = "R", mods = "LEADER|SHIFT|CTRL", action = act.ReloadConfiguration },
-	{ key = "t", mods = "LEADER", action = act.SpawnTab("CurrentPaneDomain") },
-	{ key = "T", mods = "CTRL", action = act.SpawnTab("CurrentPaneDomain") },
-	{ key = "t", mods = "LEADER", action = act.SpawnTab("CurrentPaneDomain") },
+	{ key = "t", mods = "SUPER", action = act.SpawnTab("CurrentPaneDomain") },
+	-- { key = "T", mods = "CTRL", action = act.SpawnTab("CurrentPaneDomain") },
 	{
 		key = "U",
 		mods = "CTRL",
