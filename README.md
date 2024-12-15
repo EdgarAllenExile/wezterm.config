@@ -14,4 +14,6 @@
 | Super + W / Q   | Close tab / application   |
 | Leader + Alt + Tab | Go Next Tab |
 | Leader + Alt + Shift + Tab | Go Previous Tab |
+| Leader + Alt + Numb | Go to Tab Numb |
+
 
