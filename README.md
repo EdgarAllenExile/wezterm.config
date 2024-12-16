@@ -16,4 +16,6 @@
 | Leader + Alt + Shift + Tab | Go Previous Tab |
 | Leader + Alt + Numb | Go to Tab Numb |
 
+still notquite sure about
 
+- how to make cute little launcher application? Possibly via seperate console app that launches wezterm? Seems exessive.
