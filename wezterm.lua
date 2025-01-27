@@ -103,7 +103,50 @@ config.keys = {
 	{ key = "f", mods = "LEADER", action = act.Search("CurrentSelectionOrEmptyString") },
 	-- { key = "H", mods = "CTRL", action = act.HideApplication },
 	{ key = "h", mods = "SUPER", action = act.HideApplication },
-	{ key = "k", mods = "SUPER", action = act.ClearScrollback("ScrollbackOnly") },
+	{
+		key = "l",
+		mods = "CTRL",
+		action = act.Multiple({
+			act.ClearScrollback("ScrollbackAndViewport"),
+			act.SendKey({ key = "L", mods = "CTRL" }),
+		}),
+	},
+	{
+		key = "l",
+		mods = "SUPER",
+		action = act.Multiple({
+			act.ClearScrollback("ScrollbackAndViewport"),
+			act.SendKey({ key = "L", mods = "CTRL" }),
+		}),
+	},
+	{
+		key = "c",
+		mods = "CTRL",
+		action = wezterm.action_callback(function(window, pane)
+			local has_selection = window:get_selection_text_for_pane(pane) ~= ""
+			if has_selection then
+				window:perform_action(act.CopyTo("ClipboardAndPrimarySelection"), pane)
+
+				window:perform_action(act.ClearSelection, pane)
+			else
+				window:perform_action(act.SendKey({ key = "c", mods = "CTRL" }), pane)
+			end
+		end),
+	},
+	{
+		key = "c",
+		mods = "SUPER",
+		action = wezterm.action_callback(function(window, pane)
+			local has_selection = window:get_selection_text_for_pane(pane) ~= ""
+			if has_selection then
+				window:perform_action(act.CopyTo("ClipboardAndPrimarySelection"), pane)
+
+				window:perform_action(act.ClearSelection, pane)
+			else
+				window:perform_action(act.SendKey({ key = "c", mods = "CTRL" }), pane)
+			end
+		end),
+	},
 	-- { key = "K", mods = "SHIFT|CTRL", action = act.ClearScrollback("ScrollbackOnly") },
 	{ key = "M", mods = "CTRL", action = act.Hide },
 	{ key = "m", mods = "SUPER", action = act.Hide },
