@@ -95,7 +95,10 @@ config.keys = {
 	{ key = "9", mods = "LEADER|ALT", action = act.ActivateTab(-1) },
 	--
 	{ key = "c", mods = "CTRL", action = act.CopyTo("Clipboard") },
-	{ key = "c", mods = "LEADER", action = act.CopyTo("Clipboard") },
+	{ key = "c", mods = "SUPER", action = act.CopyTo("Clipboard") },
+	{ key = "v", mods = "CTRL", action = act.PasteFrom("Clipboard") },
+	{ key = "v", mods = "SUPER", action = act.PasteFrom("Clipboard") },
+
 	{ key = "f", mods = "CTRL", action = act.Search("CurrentSelectionOrEmptyString") },
 	{ key = "f", mods = "LEADER", action = act.Search("CurrentSelectionOrEmptyString") },
 	-- { key = "H", mods = "CTRL", action = act.HideApplication },
@@ -124,15 +127,14 @@ config.keys = {
 		mods = "SHIFT|CTRL",
 		action = act.CharSelect({ copy_on_select = true, copy_to = "ClipboardAndPrimarySelection" }),
 	},
-	{ key = "v", mods = "CTRL", action = act.PasteFrom("Clipboard") },
-	{ key = "v", mods = "LEADER", action = act.PasteFrom("Clipboard") },
 	-- { key = "W", mods = "SUPER", action = act.CloseCurrentPane({ confirm = true }) },
 	{ key = "w", mods = "SUPER", action = act.CloseCurrentPane({ confirm = true }) },
 	{ key = "w", mods = "LEADER|ALT", action = act.CloseCurrentPane({ confirm = true }) },
 	{ key = "x", mods = "CTRL", action = act.ActivateCopyMode },
 	{ key = "x", mods = "LEADER", action = act.ActivateCopyMode },
-	{ key = "z", mods = "LEADER|ALT", action = act.TogglePaneZoomState },
+	{ key = "c", mods = "SUPER", action = act.CopyTo("Clipboard") },
 
+	{ key = "z", mods = "LEADER|ALT", action = act.TogglePaneZoomState },
 	{ key = "phys:Space", mods = "SHIFT|CTRL", action = act.QuickSelect },
 	{ key = "PageUp", mods = "SHIFT", action = act.ScrollByPage(-1) },
 	{ key = "PageUp", mods = "CTRL", action = act.ActivateTabRelative(-1) },
@@ -150,7 +152,6 @@ config.keys = {
 	-- { key = "_", mods = "CTRL", action = act.DecreaseFontSize },
 	-- { key = "_", mods = "SHIFT|CTRL", action = act.DecreaseFontSize },
 	-- { key = "c", mods = "SHIFT|CTRL", action = act.CopyTo("Clipboard") },
-	-- { key = "c", mods = "SUPER", action = act.CopyTo("Clipboard") },
 	-- { key = "f", mods = "SHIFT|CTRL", action = act.Search("CurrentSelectionOrEmptyString") },
 	-- { key = "f", mods = "SUPER", action = act.Search("CurrentSelectionOrEmptyString") },
 	-- { key = "h", mods = "SHIFT|CTRL", action = act.HideApplication },
@@ -289,7 +290,7 @@ smart_splits.apply_to_config(config, {
 	-- modifier keys to combine with direction_keys
 	modifiers = {
 		move = "CTRL", -- modifier to use for pane movement, e.g. CTRL+h to move left
-		resize = "META|SHIFT", -- modifier to use for pane resize, e.g. META+h to resize to the left
+		resize = "META|LEADER", -- modifier to use for pane resize, e.g. META+h to resize to the left
 	},
 	-- log level to use: info, warn, error
 	log_level = "info",
