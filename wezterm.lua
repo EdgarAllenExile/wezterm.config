@@ -16,6 +16,7 @@ config.window_decorations = "INTEGRATED_BUTTONS|RESIZE"
 config.hide_tab_bar_if_only_one_tab = false
 config.tab_bar_at_bottom = true
 config.default_workspace = "main"
+config.max_fps = 200
 
 local smart_splits = wezterm.plugin.require("https://github.com/mrjones2014/smart-splits.nvim")
 local tabline = wezterm.plugin.require("https://github.com/michaelbrusegard/tabline.wez")
