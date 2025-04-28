@@ -29,7 +29,7 @@ function module.apply_to_config(config)
 		{ key = "8", mods = "LEADER|ALT", action = act.ActivateTab(7) },
 		{ key = "9", mods = "LEADER|ALT", action = act.ActivateTab(-1) },
 		--
-		{ key = "c", mods = "CTRL", action = act.CopyTo("Clipboard") },
+		-- { key = "c", mods = "CTRL", action = act.CopyTo("Clipboard") },
 		{ key = "v", mods = "CTRL", action = act.PasteFrom("Clipboard") },
 
 		{ key = "f", mods = "CTRL", action = act.Search("CurrentSelectionOrEmptyString") },
