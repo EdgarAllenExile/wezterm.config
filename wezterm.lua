@@ -3,6 +3,8 @@ local act = wezterm.action
 -- local mux = wezterm.mux
 
 local config = wezterm.config_builder()
+local unixPlatform = require("unix-platform")
+local windowsPlatform = require("windows-platform")
 
 -- UI
 config.color_scheme = "Monokai Soda"
@@ -18,9 +20,16 @@ config.tab_bar_at_bottom = true
 config.default_workspace = "main"
 config.max_fps = 200
 
+-- Keybinds and Leader
+config.disable_default_key_bindings = true
+config.leader = { key = "`", mods = "ALT", timeout_miliseconds = 3000 }
+
 -- Platform specific implementations
 if wezterm.target_triple == "x86_64-pc-windows-msvc" then
 	config.default_prog = { "powershell.exe" }
+	windowsPlatform.apply_to_config(config)
+else
+	unixPlatform.apply_to_config(config)
 end
 
 local smart_splits = wezterm.plugin.require("https://github.com/mrjones2014/smart-splits.nvim")
@@ -75,11 +84,6 @@ tabline.apply_to_config(config)
 -- 	-- 	top = 10,
 -- 	-- },
 -- })
-
--- Keybind
-config.disable_default_key_bindings = true
-
-config.leader = { key = "`", mods = "ALT", timeout_miliseconds = 3000 }
 
 config.keys = {
 	{ key = "Enter", mods = "ALT", action = act.ToggleFullScreen },
