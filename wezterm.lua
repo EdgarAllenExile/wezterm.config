@@ -18,6 +18,11 @@ config.tab_bar_at_bottom = true
 config.default_workspace = "main"
 config.max_fps = 200
 
+-- Platform specific implementations
+if wezterm.target_triple == "x86_64-pc-windows-msvc" then
+	config.default_prog = { "powershell.exe" }
+end
+
 local smart_splits = wezterm.plugin.require("https://github.com/mrjones2014/smart-splits.nvim")
 local tabline = wezterm.plugin.require("https://github.com/michaelbrusegard/tabline.wez")
 tabline.setup({
