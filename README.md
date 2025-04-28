@@ -19,3 +19,7 @@
 still notquite sure about
 
 - how to make cute little launcher application? Possibly via seperate console app that launches wezterm? Seems exessive.
+
+## Platform Specific Implementations
+
+It might be time to think about installing some Mac & Windows specific things so that I can use these applications in a way that makes sense to me in both instances.
