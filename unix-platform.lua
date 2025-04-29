@@ -119,6 +119,8 @@ function module.apply_to_config(config)
 		{ key = "Copy", mods = "NONE", action = act.CopyTo("Clipboard") },
 		{ key = "Paste", mods = "NONE", action = act.PasteFrom("Clipboard") },
 		-- { key = "Z", mods = "SHIFT|CTRL", action = act.TogglePaneZoomState },
+		{ key = "-", mods = "LEADER|ALT", action = act.DecreaseFontSize },
+		{ key = "=", mods = "LEADER|ALT", action = act.IncreaseFontSize },
 		-- { key = "[", mods = "SHIFT|SUPER", action = act.ActivateTabRelative(-1) },
 		-- { key = "]", mods = "SHIFT|SUPER", action = act.ActivateTabRelative(1) },
 		-- { key = "^", mods = "CTRL", action = act.ActivateTab(5) },
