@@ -34,6 +34,7 @@ end
 
 local smart_splits = wezterm.plugin.require("https://github.com/mrjones2014/smart-splits.nvim")
 local tabline = wezterm.plugin.require("https://github.com/michaelbrusegard/tabline.wez")
+
 tabline.setup({
 	options = {
 		icons_enabled = true,
@@ -342,8 +343,8 @@ smart_splits.apply_to_config(config, {
 	-- },
 	-- modifier keys to combine with direction_keys
 	modifiers = {
-		move = "CTRL", -- modifier to use for pane movement, e.g. CTRL+h to move left
-		resize = "META|LEADER", -- modifier to use for pane resize, e.g. META+h to resize to the left
+		move = "ALT|LEADER", -- modifier to use for pane movement, e.g. CTRL+h to move left
+		resize = "CTRL|LEADER", -- modifier to use for pane resize, e.g. META+h to resize to the left
 	},
 	-- log level to use: info, warn, error
 	log_level = "info",

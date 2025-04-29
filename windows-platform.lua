@@ -45,30 +45,8 @@ function module.apply_to_config(config)
 			}),
 		},
 		{
-			key = "l",
-			mods = "SUPER",
-			action = act.Multiple({
-				act.ClearScrollback("ScrollbackAndViewport"),
-				act.SendKey({ key = "L", mods = "CTRL" }),
-			}),
-		},
-		{
 			key = "c",
 			mods = "CTRL",
-			action = wezterm.action_callback(function(window, pane)
-				local has_selection = window:get_selection_text_for_pane(pane) ~= ""
-				if has_selection then
-					window:perform_action(act.CopyTo("ClipboardAndPrimarySelection"), pane)
-
-					window:perform_action(act.ClearSelection, pane)
-				else
-					window:perform_action(act.SendKey({ key = "c", mods = "CTRL" }), pane)
-				end
-			end),
-		},
-		{
-			key = "c",
-			mods = "SUPER",
 			action = wezterm.action_callback(function(window, pane)
 				local has_selection = window:get_selection_text_for_pane(pane) ~= ""
 				if has_selection then

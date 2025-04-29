@@ -8,22 +8,22 @@ local module = {}
 function module.apply_to_config(config)
 	config.keys = {
 
-		{ key = "!", mods = "ctrl", action = act.activatetab(0) },
-		{ key = "s", mods = "leader|alt", action = act.splitvertical({ domain = "currentpanedomain" }) },
-		{ key = "s", mods = "leader|shift|alt", action = act.splithorizontal({ domain = "currentpanedomain" }) },
+		{ key = "!", mods = "ctrl", action = act.ActivateTab(0) },
+		{ key = "s", mods = "leader|alt", action = act.SplitVertical({ domain = "currentpanedomain" }) },
+		{ key = "s", mods = "leader|shift|alt", action = act.SplitHorizontal({ domain = "currentpanedomain" }) },
 
 		-- tab navigation
-		{ key = "tab", mods = "leader|alt", action = act.activatetabrelative(1) },
-		{ key = "tab", mods = "leader|shift|alt", action = act.activatetabrelative(-1) },
-		{ key = "1", mods = "leader|alt", action = act.activatetab(0) },
-		{ key = "2", mods = "leader|alt", action = act.activatetab(1) },
-		{ key = "3", mods = "leader|alt", action = act.activatetab(2) },
-		{ key = "4", mods = "leader|alt", action = act.activatetab(3) },
-		{ key = "5", mods = "leader|alt", action = act.activatetab(4) },
-		{ key = "6", mods = "leader|alt", action = act.activatetab(5) },
-		{ key = "7", mods = "leader|alt", action = act.activatetab(6) },
-		{ key = "8", mods = "leader|alt", action = act.activatetab(7) },
-		{ key = "9", mods = "leader|alt", action = act.activatetab(-1) },
+		{ key = "tab", mods = "leader|alt", action = act.ActivateTabRelative(1) },
+		{ key = "tab", mods = "leader|shift|alt", action = act.ActivateTabRelative(-1) },
+		{ key = "1", mods = "leader|alt", action = act.ActivateTab(0) },
+		{ key = "2", mods = "leader|alt", action = act.ActivateTab(1) },
+		{ key = "3", mods = "leader|alt", action = act.ActivateTab(2) },
+		{ key = "4", mods = "leader|alt", action = act.ActivateTab(3) },
+		{ key = "5", mods = "leader|alt", action = act.ActivateTab(4) },
+		{ key = "6", mods = "leader|alt", action = act.ActivateTab(5) },
+		{ key = "7", mods = "leader|alt", action = act.ActivateTab(6) },
+		{ key = "8", mods = "leader|alt", action = act.ActivateTab(7) },
+		{ key = "9", mods = "leader|alt", action = act.ActivateTab(-1) },
 		--
 		{ key = "c", mods = "ctrl", action = act.copyto("clipboard") },
 		{ key = "c", mods = "super", action = act.copyto("clipboard") },
