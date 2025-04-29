@@ -25,10 +25,10 @@ function module.apply_to_config(config)
 		{ key = "8", mods = "LEADER|ALT", action = act.ActivateTab(7) },
 		{ key = "9", mods = "LEADER|ALT", action = act.ActivateTab(-1) },
 		--
-		{ key = "c", mods = "CTRL", action = act.CopyTo("clipboard") },
-		{ key = "c", mods = "SUPER", action = act.CopyTo("clipboard") },
-		{ key = "v", mods = "CTRL", action = act.PasteFrom("clipboard") },
-		{ key = "v", mods = "SUPER", action = act.PasteFrom("clipboard") },
+		{ key = "c", mods = "CTRL", action = act.CopyTo("Clipboard") },
+		{ key = "c", mods = "SUPER", action = act.CopyTo("Clipboard") },
+		{ key = "v", mods = "CTRL", action = act.PasteFrom("Clipboard") },
+		{ key = "v", mods = "SUPER", action = act.PasteFrom("Clipboard") },
 
 		{ key = "f", mods = "CTRL", action = act.Search("CurrentSelectionOrEmptyString") },
 		{ key = "f", mods = "LEADER", action = act.Search("CurrentSelectionOrEmptyString") },
