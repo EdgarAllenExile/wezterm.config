@@ -7,18 +7,18 @@ local unixModule = {}
 
 function unixModule.apply_to_config(config)
 	config.keys = {
-
+		{ key = "Enter", mods = "ALT", action = act.ToggleFullScreen },
 		{ key = "!", mods = "CTRL", action = act.ActivateTab(0) },
 		{ key = "s", mods = "LEADER|ALT", action = act.SplitVertical({ domain = "CurrentPaneDomain" }) },
-		{ key = "s", mods = "LEADER|SHIFT|ALT", Action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
+		{ key = "s", mods = "LEADER|SHIFT|ALT", action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
 
-		-- tab navigation
-		{ key = "tab", mods = "LEADER|ALT", action = act.ActivateTabRelative(1) },
-		{ key = "tab", mods = "LEADER|SHIFT|ALT", action = act.ActivateTabRelative(-1) },
+		-- Tab Navigation
+		{ key = "Tab", mods = "LEADER|ALT", action = act.ActivateTabRelative(1) },
+		{ key = "Tab", mods = "LEADER|SHIFT|ALT", action = act.ActivateTabRelative(-1) },
 		{ key = "1", mods = "LEADER|ALT", action = act.ActivateTab(0) },
 		{ key = "2", mods = "LEADER|ALT", action = act.ActivateTab(1) },
 		{ key = "3", mods = "LEADER|ALT", action = act.ActivateTab(2) },
-		{ key = "4", mods = "leader|alt", action = act.ActivateTab(3) },
+		{ key = "4", mods = "LEADER|ALT", action = act.ActivateTab(3) },
 		{ key = "5", mods = "LEADER|ALT", action = act.ActivateTab(4) },
 		{ key = "6", mods = "LEADER|ALT", action = act.ActivateTab(5) },
 		{ key = "7", mods = "LEADER|ALT", action = act.ActivateTab(6) },
@@ -119,8 +119,6 @@ function unixModule.apply_to_config(config)
 		{ key = "Copy", mods = "NONE", action = act.CopyTo("Clipboard") },
 		{ key = "Paste", mods = "NONE", action = act.PasteFrom("Clipboard") },
 		-- { key = "Z", mods = "SHIFT|CTRL", action = act.TogglePaneZoomState },
-		{ key = "-", mods = "LEADER|ALT", action = act.DecreaseFontSize },
-		{ key = "=", mods = "LEADER|ALT", action = act.IncreaseFontSize },
 		-- { key = "[", mods = "SHIFT|SUPER", action = act.ActivateTabRelative(-1) },
 		-- { key = "]", mods = "SHIFT|SUPER", action = act.ActivateTabRelative(1) },
 		-- { key = "^", mods = "CTRL", action = act.ActivateTab(5) },
