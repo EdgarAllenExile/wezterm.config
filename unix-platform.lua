@@ -3,9 +3,9 @@
 local wezterm = require("wezterm")
 local act = wezterm.action
 
-local module = {}
+local unixModule = {}
 
-function module.apply_to_config(config)
+function unixModule.apply_to_config(config)
 	config.keys = {
 
 		{ key = "!", mods = "CTRL", action = act.ActivateTab(0) },
@@ -250,4 +250,4 @@ function module.apply_to_config(config)
 	}
 end
 
-return module
+return unixModule
