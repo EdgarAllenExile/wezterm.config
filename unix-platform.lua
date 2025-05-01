@@ -128,6 +128,8 @@ function unixModule.apply_to_config(config)
 		-- { key = "^", mods = "CTRL", action = act.ActivateTab(5) },
 		-- { key = "^", mods = "SHIFT|CTRL", action = act.ActivateTab(5) },
 		-- { key = "_", mods = "CTRL", action = act.DecreaseFontSize },
+		{ key = "-", mods = "LEADER|ALT", action = act.DecreaseFontSize },
+		{ key = "=", mods = "LEADER|ALT", action = act.IncreaseFontSize },
 		-- { key = "_", mods = "SHIFT|CTRL", action = act.DecreaseFontSize },
 		-- { key = "c", mods = "SHIFT|CTRL", action = act.CopyTo("Clipboard") },
 		-- { key = "f", mods = "SHIFT|CTRL", action = act.Search("CurrentSelectionOrEmptyString") },
