@@ -23,3 +23,5 @@ still notquite sure about
 ## Platform Specific Implementations
 
 It might be time to think about installing some Mac & Windows specific things so that I can use these applications in a way that makes sense to me in both instances.
+
+I was thinking this would be a good idea, but upon reflaction, I think it will actually make more sense to align both platforms behind `ALT` and `ALT|LEADER`

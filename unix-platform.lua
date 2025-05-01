@@ -24,7 +24,8 @@ function unixModule.apply_to_config(config)
 		{ key = "7", mods = "LEADER|ALT", action = act.ActivateTab(6) },
 		{ key = "8", mods = "LEADER|ALT", action = act.ActivateTab(7) },
 		{ key = "9", mods = "LEADER|ALT", action = act.ActivateTab(-1) },
-		--
+
+		-- Basic Controls and Functions
 		{ key = "c", mods = "CTRL", action = act.CopyTo("Clipboard") },
 		{ key = "c", mods = "SUPER", action = act.CopyTo("Clipboard") },
 		{ key = "v", mods = "CTRL", action = act.PasteFrom("Clipboard") },
