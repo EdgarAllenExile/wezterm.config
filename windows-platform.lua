@@ -10,6 +10,8 @@ function module.apply_to_config(config)
 	-- for example config.color_scheme = 'Batman'
 	config.default_prog = { "powershell.exe" }
 
+	config.font_size = 13
+
 	config.keys = {
 		{ key = "Enter", mods = "ALT", action = act.ToggleFullScreen },
 		{ key = "!", mods = "CTRL", action = act.ActivateTab(0) },
