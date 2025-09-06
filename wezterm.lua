@@ -9,8 +9,9 @@ local windowsPlatform = require("windows-platform")
 -- UI
 config.color_scheme = "Monokai Soda"
 
-config.font = wezterm.font("Fragment Mono")
-config.font_size = 13
+-- config.font = wezterm.font("Fragment Mono")
+config.font = wezterm.font("CaskaydiaCove Nerd Font")
+config.font_size = 11
 
 -- UI.TabBar
 config.use_fancy_tab_bar = true
