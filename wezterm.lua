@@ -11,7 +11,7 @@ config.color_scheme = "Monokai Soda"
 
 -- config.font = wezterm.font("Fragment Mono")
 config.font = wezterm.font("CaskaydiaCove Nerd Font")
-config.font_size = 11
+config.font_size = 12
 
 -- UI.TabBar
 config.use_fancy_tab_bar = true
